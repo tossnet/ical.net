@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http.Headers;
 using System.Text;
 using Experiments.ComponentProperties;
 
@@ -33,11 +32,11 @@ namespace Experiments.PropertyValues
         public CalAddress(Uri uri)
             : this(uri, commonName: null, calendarUserType: null) { }
 
-        public CalAddress(Uri uri, string commonName)
-            : this(uri, commonName: commonName, calendarUserType: null) { }
-
-        public CalAddress(Uri uri, string calendarUserType)
-            : this(uri, commonName: null, calendarUserType: calendarUserType) { }
+        // public CalAddress(Uri uri, string commonName)
+        //     : this(uri, commonName: commonName, calendarUserType: null) { }
+        //
+        // public CalAddress(Uri uri, string calendarUserType)
+        //     : this(uri, commonName: null, calendarUserType: calendarUserType) { }
 
 
         //Uri
@@ -58,26 +57,5 @@ namespace Experiments.PropertyValues
             builder.Append(UriValue.AbsoluteUri);
             return builder.ToString();
         }
-    }
-
-    /// <summary>
-    /// Represents valid status values for a VEVENT, which are TENTATIVE, CONFIRMED, or CANCELLED
-    /// </summary>
-    public static class CalendarUserTypes
-    {
-        public static string Default => Individual;
-        public static string Individual => "INDIVIDUAL";
-        public static string Group => "GROUP";
-        public static string Resource => "RESOURCE";
-        public static string Room => "ROOM";
-        public static string Unknown => "UNKNOWN";
-
-        private static readonly HashSet<string> _allowedValues = new HashSet<string>(StringComparer.Ordinal)
-        {
-            Individual, Group, Resource, Room, Unknown,
-        };
-
-        public static bool IsValid(string userType)
-            => userType.StartsWith("X-", StringComparison.Ordinal) || _allowedValues.Contains(userType);
     }
 }
