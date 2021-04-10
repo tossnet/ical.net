@@ -45,7 +45,7 @@ namespace Experiments.PropertyValues
         //URI + cut
         //URI + CN + cut
 
-        public CalAddress(Uri uri, )
+        // public CalAddress(Uri uri, );
 
         public override string ToString()
         {

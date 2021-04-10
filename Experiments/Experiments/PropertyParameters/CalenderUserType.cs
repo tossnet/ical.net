@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Experiments.ComponentProperties;
+using Experiments.PropertyValues;
 
 namespace Experiments.PropertyParameters
 {
