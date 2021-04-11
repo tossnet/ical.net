@@ -5,19 +5,38 @@ using Experiments.ComponentProperties;
 namespace Experiments.PropertyParameters
 {
     /// <summary>
+    /// Parameter Name:  CUTYPE
+    ///
+    /// To identify the type of calendar user specified by the property.
+    ///
+    /// Format Definition:  This property parameter is defined by the following notation:
+    /// cutypeparam        = "CUTYPE" "="
+    /// ("INDIVIDUAL"   ; An individual
+    /// / "GROUP"        ; A group of individuals
+    /// / "RESOURCE"     ; A physical resource
+    /// / "ROOM"         ; A room resource
+    /// / "UNKNOWN"      ; Otherwise not known
+    /// / x-name         ; Experimental type
+    /// / iana-token)    ; Other IANA-registered
+    /// ; type
+    /// ; Default is INDIVIDUAL
     /// This parameter can be specified on properties with a CAL-ADDRESS value type.The parameter identifies the type of calendar user specified by the
     /// property.If not specified on a property that allows this parameter, the default is INDIVIDUAL. Applications MUST treat x-name and iana-token values
     /// they don't recognize the same way as they would the UNKNOWN value.
+    /// 
     /// https://tools.ietf.org/html/rfc5545#section-3.2.3
     /// </summary>
-    public struct CalenderUserType :
-        INameValueProperty
+    /// <example>
+    /// ATTENDEE;CUTYPE=GROUP:mailto:ietf-calsch@example.org
+    /// </example>
+    public readonly struct CalendarUserType :
+        IValueType
     {
         public string Name => "CUTYPE";
         public string Value { get; }
-        public IReadOnlyList<string> Properties => null;
+        public bool IsEmpty => false;
 
-        public CalenderUserType(string userType)
+        public CalendarUserType(string userType)
         {
             if (!CalendarUserTypes.IsValid(userType))
             {
@@ -33,7 +52,7 @@ namespace Experiments.PropertyParameters
     }
     
     /// <summary>
-    /// Represents valid status values for a VEVENT, which are TENTATIVE, CONFIRMED, or CANCELLED
+    /// Represents valid user type values for a CalendarUserType (CUTYPE)
     /// </summary>
     public static class CalendarUserTypes
     {

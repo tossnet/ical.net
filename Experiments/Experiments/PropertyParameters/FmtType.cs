@@ -7,7 +7,7 @@ namespace Experiments.PropertyParameters
     ///
     /// https://tools.ietf.org/html/rfc4288#section-4.2
     /// </summary>
-    public struct FmtType :
+    public readonly struct FmtType :
         IValueType
     {
         public string Name => "FMTTYPE";

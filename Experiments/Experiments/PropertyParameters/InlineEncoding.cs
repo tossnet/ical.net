@@ -8,7 +8,7 @@
     /// This property is typically optional.
     /// </summary>
     /// <remarks>This property is typically optional, except in binary attachments</remarks>
-    public struct InlineEncoding :
+    public readonly struct InlineEncoding :
         IValueType
     {
         public string Name => "ENCODING";

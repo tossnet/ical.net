@@ -5,7 +5,7 @@ namespace Experiments.PropertyParameters
     /// <summary>
     /// The RFC-5646, IETF language tag associated with a property or property parameter. Validity of language tags is NOT enforced.
     /// </summary>
-    public struct Language : 
+    public readonly struct Language : 
         IValueType
     {
         public string Name => "LANGUAGE";
