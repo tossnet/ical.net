@@ -22,7 +22,7 @@ namespace Experiments.PropertyParameters
         IValueType
     {
         public string Name => "ALTREP";
-        public string Value => Uri?.ToString();
+        public string Value => Uri?.OriginalString;
         public Uri Uri { get; }
         public bool IsEmpty => Uri == null;
 

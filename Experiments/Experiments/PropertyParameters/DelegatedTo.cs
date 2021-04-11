@@ -22,7 +22,7 @@ namespace Experiments.PropertyParameters
     /// ATTENDEE;DELEGATED-TO="mailto:jdoe@example.com","mailto:jqpublic
     ///  @example.com":mailto:jsmith@example.com
     /// </example>
-    public class DelegatedTo :
+    public readonly struct DelegatedTo :
         IValueType
     {
         public string Name => "DELEGATED-TO";
