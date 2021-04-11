@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Net.Mail;
+using Experiments.Utilities;
 
 namespace Experiments.PropertyParameters
 {
@@ -30,9 +29,9 @@ namespace Experiments.PropertyParameters
     {
         public string Name => "DELEGATED-FROM";
         public string Value => ToString();
-        public IReadOnlyList<string> Delegates { get; }
+        public IReadOnlyList<string> Delegators { get; }
 
-        public bool IsEmpty => Delegates is null || Delegates.Count == 0;
+        public bool IsEmpty => Delegators is null || Delegators.Count == 0;
 
         /// <summary>
         /// An email address in the form "mailto:foo@example.com"
@@ -43,23 +42,14 @@ namespace Experiments.PropertyParameters
 
         public DelegatedFrom(IEnumerable<string> delegates)
         {
-            Delegates = (delegates ?? Enumerable.Empty<string>())
+            Delegators = (delegates ?? Enumerable.Empty<string>())
                 .Where(e => !string.IsNullOrEmpty(e))
-                .Select(e =>
-                {
-                    if (Uri.TryCreate(e, UriKind.Absolute, out var uri) && uri.Scheme.Equals(Uri.UriSchemeMailto, StringComparison.Ordinal))
-                    {
-                        return $"\"{e}\"";
-                    }
-                    
-                    var addr = new MailAddress(e);
-                    return $"\"{Uri.UriSchemeMailto}:{addr.Address}\"";
-                })
+                .Select(e => $"\"mailto:{e.ParseAndExtractEmailAddress()}\"")
                 .Distinct(StringComparer.OrdinalIgnoreCase)
                 .ToList();
         }
 
         public override string ToString()
-            => $"{Name}={string.Join(",", Delegates)}";
+            => $"{Name}={string.Join(",", Delegators)}";
     }
 }

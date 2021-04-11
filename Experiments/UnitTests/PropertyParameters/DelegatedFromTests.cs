@@ -11,7 +11,7 @@ namespace UnitTests.PropertyParameters
         public void DelegatedFromTest(IEnumerable<string> emails, IEnumerable<string> expecteds, string expectedSerialization)
         {
             var delegates = new DelegatedFrom(emails);
-            CollectionAssert.AreEquivalent(expecteds, delegates.Delegates);
+            CollectionAssert.AreEquivalent(expecteds, delegates.Delegators);
             var serialized = delegates.ToString();
             Assert.AreEqual(expectedSerialization, serialized);
         }
