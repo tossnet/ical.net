@@ -50,7 +50,7 @@ namespace Experiments.PropertyParameters
                 ? null
                 : string.Equals(EightBit, encoding, StringComparison.OrdinalIgnoreCase) || string.Equals(Base64, encoding, StringComparison.OrdinalIgnoreCase)
                     ? encoding
-                    : throw new ArgumentOutOfRangeException($"{encoding} is not a recognized encoding");
+                    : throw new ArgumentException($"{encoding} is not a recognized encoding");
 
             if (string.Equals(value, ValueBinary, StringComparison.Ordinal)
                 && !string.Equals(Encoding, Base64, StringComparison.Ordinal))
@@ -78,7 +78,7 @@ namespace Experiments.PropertyParameters
 
             if (Value is object)
             {
-                sb.Append(";").Append(Value);
+                sb.Append(";VALUE=").Append(Value);
             }
             return sb.ToString();
         }
