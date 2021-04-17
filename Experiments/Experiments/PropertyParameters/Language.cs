@@ -40,6 +40,6 @@ namespace Experiments.PropertyParameters
                 : CultureExtensions.GetNormalizedLanguageTag(language);
         }
 
-        public override string ToString() => ValueTypeUtilities.GetToString(this);
+        public override string ToString() => this.NameEqualsValue();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Experiments.Utilities;
 
 namespace Experiments.PropertyParameters
 {
@@ -47,7 +48,7 @@ namespace Experiments.PropertyParameters
                 : userType;
         }
 
-        public override string ToString() => $"{Name}={Value}";
+        public override string ToString() => this.NameEqualsValue();
     }
     
     /// <summary>

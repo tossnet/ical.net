@@ -52,6 +52,10 @@ namespace Experiments.PropertyParameters
         }
 
         public override string ToString()
-            => $"{Name}={string.Join(",", Delegates)}";
+        {
+            return IsEmpty
+                ? null
+                : $"{Name}={string.Join(",", Delegates)}";
+        }
     }
 }

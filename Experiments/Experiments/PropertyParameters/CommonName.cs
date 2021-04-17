@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Experiments.Utilities;
 
 namespace Experiments.PropertyParameters
 {
@@ -40,11 +41,6 @@ namespace Experiments.PropertyParameters
                 : value;
         }
 
-        public override string ToString()
-        {
-            return IsEmpty
-                ? null
-                : $"{Name}=\"{Value}\"";
-        }
+        public override string ToString() => this.NameEqualsQuotedValue();
     }
 }

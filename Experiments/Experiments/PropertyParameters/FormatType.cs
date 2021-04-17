@@ -1,5 +1,6 @@
 using System;
 using System.Text.RegularExpressions;
+using Experiments.Utilities;
 
 namespace Experiments.PropertyParameters
 {
@@ -48,11 +49,6 @@ namespace Experiments.PropertyParameters
                 : throw new ArgumentException($"{mediaType} is not a valid media type");
         }
 
-        public override string ToString()
-        {
-            return Value is null
-                ? null
-                : $"{Name}={Value}";
-        }
+        public override string ToString() => this.NameEqualsValue();
     }
 }

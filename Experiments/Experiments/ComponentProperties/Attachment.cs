@@ -19,7 +19,7 @@ namespace Experiments.ComponentProperties
         public string Name => "ATTACH";
         public Uri Uri { get; }
         public byte[] Data { get; }
-        public FmtType FormatType { get; }
+        public FormatType FormatType { get; }
         public InlineEncoding Encoding { get; }
         public string Value { get; }
         public IReadOnlyList<string> Properties { get; }
@@ -28,9 +28,9 @@ namespace Experiments.ComponentProperties
             : this(uri, formatType: null) { }
 
         public Attachment(Uri uri, string formatType, IEnumerable<string> additionalProperties = null)
-            : this(uri, new FmtType(formatType), additionalProperties) { }
+            : this(uri, new FormatType(formatType), additionalProperties) { }
 
-        public Attachment(Uri uri, FmtType formatType, IEnumerable<string> additionalProperties = null)
+        public Attachment(Uri uri, FormatType formatType, IEnumerable<string> additionalProperties = null)
         {
             Uri = uri;
             FormatType = formatType;

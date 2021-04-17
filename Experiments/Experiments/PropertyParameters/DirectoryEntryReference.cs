@@ -1,4 +1,5 @@
 using System;
+using Experiments.Utilities;
 
 namespace Experiments.PropertyParameters
 {
@@ -32,7 +33,11 @@ namespace Experiments.PropertyParameters
 
         public DirectoryEntryReference(string directoryUri)
         {
-            if (string.IsNullOrWhiteSpace(directoryUri)) throw new ArgumentNullException(nameof(directoryUri));
+            if (string.IsNullOrWhiteSpace(directoryUri))
+            {
+                Uri = null;
+            }
+            
             Uri = new Uri(directoryUri, UriKind.RelativeOrAbsolute);
         }
 
@@ -41,11 +46,6 @@ namespace Experiments.PropertyParameters
             Uri = directoryUri;
         }
 
-        public override string ToString()
-        {
-            return Uri is null
-                ? null
-                : $"{Name}=\"{Value}\"";
-        }
+        public override string ToString() => this.NameEqualsQuotedValue();
     }
 }

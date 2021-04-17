@@ -1,4 +1,5 @@
 using System;
+using Experiments.Utilities;
 
 namespace Experiments.PropertyParameters
 {
@@ -81,9 +82,6 @@ namespace Experiments.PropertyParameters
             throw new ArgumentException($"{fbTimeType} is not a recognized free/busy time type");
         }
 
-        public override string ToString()
-            => IsEmpty
-                ? null
-                : $"{Name}={Value}";
+        public override string ToString() => this.NameEqualsValue();
     }
 }

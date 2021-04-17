@@ -1,4 +1,5 @@
 ﻿using System;
+using Experiments.Utilities;
 
 namespace Experiments.PropertyParameters
 {
@@ -30,15 +31,22 @@ namespace Experiments.PropertyParameters
         {
             Uri = value;
         }
-        
+
         public AltRep(string uri)
-            : this(new Uri(uri)) {}
+        {
+            if (string.IsNullOrWhiteSpace(uri))
+            {
+                Uri = null;
+            }
+            
+            Uri = new Uri(uri, UriKind.RelativeOrAbsolute);
+        }
 
         /// <summary>
         /// ALTREP="CID:part3.msg.970415T083000@example.com"
         /// </summary>
         /// <returns></returns>
-        public override string ToString() => Value == null ? "" : $"{Name}=\"{Value}\"";
+        public override string ToString() => this.NameEqualsQuotedValue();
 
         public static void VerifyAltRep(AltRep altRep, string parameter, string parameterName)
         {
