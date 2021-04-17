@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Experiments.PropertyParameters;
 using NUnit.Framework;

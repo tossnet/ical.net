@@ -1,5 +1,4 @@
 using System;
-using Experiments.ComponentProperties;
 using Experiments.Utilities;
 
 namespace Experiments.PropertyParameters
