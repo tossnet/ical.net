@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using Experiments.PropertyParameters;
 
 namespace Experiments.Utilities
@@ -27,6 +28,34 @@ namespace Experiments.Utilities
             return valueType.IsEmpty
                 ? null
                 : $"{valueType.Name}={valueType.Value}";
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="valueType"></param>
+        /// <param name="addresses"></param>
+        /// <returns></returns>
+        public static string QuotedValuesWithMailto(this IValueType valueType, IEnumerable<string> addresses)
+        {
+            if (valueType.IsEmpty)
+            {
+                return null;
+            }
+
+            var needsComma = false;
+            var sb = new StringBuilder();
+            sb.Append(valueType.Name).Append("=");
+            foreach (var element in addresses)
+            {
+                if (needsComma)
+                {
+                    sb.Append(",");
+                }
+                sb.Append("\"mailto:").Append(element).Append("\"");
+                needsComma = true;
+            }
+            return sb.ToString();
         }
     }
 }

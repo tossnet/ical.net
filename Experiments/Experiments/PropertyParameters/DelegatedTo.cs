@@ -44,18 +44,17 @@ namespace Experiments.PropertyParameters
         /// <param name="delegates"></param>
         public DelegatedTo(IEnumerable<string> delegates)
         {
-            Delegates = (delegates ?? Enumerable.Empty<string>())
-                .Where(e => !string.IsNullOrEmpty(e))
-                .Select(e => $"\"mailto:{e.ParseAndExtractEmailAddress()}\"")
+            var intermediate = (delegates ?? Enumerable.Empty<string>())
+                .Where(e => !string.IsNullOrWhiteSpace(e))
+                .Select(e => e.ParseAndExtractEmailAddress())
                 .Distinct(StringComparer.OrdinalIgnoreCase)
                 .ToList();
+
+            Delegates = intermediate.Any()
+                ? intermediate
+                : null;
         }
 
-        public override string ToString()
-        {
-            return IsEmpty
-                ? null
-                : $"{Name}={string.Join(",", Delegates)}";
-        }
+        public override string ToString() => this.QuotedValuesWithMailto(Delegates);
     }
 }

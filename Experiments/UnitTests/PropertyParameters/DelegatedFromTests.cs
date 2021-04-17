@@ -20,25 +20,25 @@ namespace UnitTests.PropertyParameters
         {
             yield return new TestCaseData(
                 new[]{"mailto:rstockbower@example.com"},
-                new[]{"\"mailto:rstockbower@example.com\""},
+                new[]{"rstockbower@example.com"},
                 "DELEGATED-FROM=\"mailto:rstockbower@example.com\"")
             .SetName("mailto:rstockbower@example.com");
 
             yield return new TestCaseData(
                 new[]{"rstockbower@example.com"},
-                new[]{"\"mailto:rstockbower@example.com\""},
+                new[]{"rstockbower@example.com"},
                 "DELEGATED-FROM=\"mailto:rstockbower@example.com\"")
             .SetName("rstockbower@example.com");
             
             yield return new TestCaseData(
                 new[]{"rstockbower@example.com", "foo@example.com"},
-                new[]{"\"mailto:rstockbower@example.com\"", "\"mailto:foo@example.com\""},
+                new[]{"rstockbower@example.com", "foo@example.com"},
                 "DELEGATED-FROM=\"mailto:rstockbower@example.com\",\"mailto:foo@example.com\"")
             .SetName("rstockbower@example.com & foo@example.com");
             
             yield return new TestCaseData(
                 new[]{"rstockbower@example.com", "rstockbower@example.com"},
-                new[]{"\"mailto:rstockbower@example.com\""},
+                new[]{"rstockbower@example.com"},
                 "DELEGATED-FROM=\"mailto:rstockbower@example.com\"")
             .SetName("Double rstockbower@example.com is de-duplicated");
         }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Experiments.Utilities;
 
 namespace Experiments.PropertyParameters
@@ -61,27 +60,7 @@ namespace Experiments.PropertyParameters
                 ? intermediate
                 : null;
         }
-        
-        public override string ToString()
-        {
-            if (IsEmpty)
-            {
-                return null;
-            }
 
-            var needsComma = false;
-            var sb = new StringBuilder();
-            sb.Append(Name).Append("=");
-            foreach (var element in Memberships)
-            {
-                if (needsComma)
-                {
-                    sb.Append(",");
-                }
-                sb.Append("\"mailto:").Append(element).Append("\"");
-                needsComma = true;
-            }
-            return sb.ToString();
-        }
+        public override string ToString() => this.QuotedValuesWithMailto(Memberships);
     }
 }

@@ -40,16 +40,19 @@ namespace Experiments.PropertyParameters
         public DelegatedFrom(string @delegate) :
             this(new []{@delegate}) { }
 
-        public DelegatedFrom(IEnumerable<string> delegates)
+        public DelegatedFrom(IEnumerable<string> delegators)
         {
-            Delegators = (delegates ?? Enumerable.Empty<string>())
-                .Where(e => !string.IsNullOrEmpty(e))
-                .Select(e => $"\"mailto:{e.ParseAndExtractEmailAddress()}\"")
+            var intermediate = (delegators ?? Enumerable.Empty<string>())
+                .Where(e => !string.IsNullOrWhiteSpace(e))
+                .Select(e => e.ParseAndExtractEmailAddress())
                 .Distinct(StringComparer.OrdinalIgnoreCase)
                 .ToList();
+
+            Delegators = intermediate.Any()
+                ? intermediate
+                : null;
         }
 
-        public override string ToString()
-            => $"{Name}={string.Join(",", Delegators)}";
+        public override string ToString() => this.QuotedValuesWithMailto(Delegators);
     }
 }
