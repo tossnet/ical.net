@@ -14,7 +14,7 @@ namespace Experiments.ComponentProperties
         /// Returns null if the value is null or whitespace, otherwise returns the value.
         /// </summary>
         /// <param name="value"></param>
-        public static string GetNormalizedValue(string value) => string.IsNullOrWhiteSpace(value) ? null : value;
+        public static string NormalizeToNullIfEmpty(string value) => string.IsNullOrWhiteSpace(value) ? null : value;
 
         public static string GetToString(INameValueProperty nameValueProperty)
         {

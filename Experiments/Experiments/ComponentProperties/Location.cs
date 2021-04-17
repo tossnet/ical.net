@@ -60,7 +60,7 @@ namespace Experiments.ComponentProperties
 
         public Location(string location, IEnumerable<string> additionalProperties = null)
         {
-            Value = SerializationUtilities.GetNormalizedValue(location);
+            Value = SerializationUtilities.NormalizeToNullIfEmpty(location);
             Properties = SerializationUtilities.GetNormalizedStringCollection(additionalProperties);
         }
 

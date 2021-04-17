@@ -17,7 +17,7 @@ namespace Experiments.ComponentProperties
 
         public Description(string description, IEnumerable<string> additionalProperties)
         {
-            Value = SerializationUtilities.GetNormalizedValue(description);
+            Value = SerializationUtilities.NormalizeToNullIfEmpty(description);
             Properties = SerializationUtilities.GetNormalizedStringCollection(additionalProperties);
         }
 
